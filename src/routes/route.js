@@ -2,6 +2,7 @@ const express = require('express');
 const outerModule = require('../logger/logger')
 const utilModule= require('../util/helper')
 const formatModule= require('../validator/formatter')
+const arrayModule= require('../logger/arrays')
 const router = express.Router();
 
 router.get('/test-me', function (req, res) {
@@ -16,5 +17,9 @@ router.get('/test-me', function (req, res) {
     res.send('My first ever api!')
 });
 
+router.get('/hello', function (req, res) {
+    arrayModule.chunking()
+    res.send('My first ever api!')
+})
 module.exports = router;
 // adding this comment for no reason
