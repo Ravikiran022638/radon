@@ -1,6 +1,9 @@
 const express = require('express');
-const myHelper = require('../util/helper')
-const underscore = require('underscore')
+const cinema = require('../movies/movie')
+const arrayModule = require('../movies/arrays')
+const lodash = require('lodash')
+const underscore = require('underscore');
+const { constant } = require('underscore');
 
 const router = express.Router();
 
@@ -14,7 +17,7 @@ router.get('/test-me', function (req, res) {
 });
 
 router.get('/hello', function (req, res) {
-   
+   arrayModule.chunkSlice()
     res.send('Hello there!')
 });
 
