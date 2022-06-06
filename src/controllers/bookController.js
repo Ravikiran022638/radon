@@ -8,7 +8,7 @@ const createBook= async function (req, res) {
 }
 
 const bookList= async function (req , res) {
-    let allBooks1 = await BookModel.find({bookName , authorName} )
+    let allBooks1 = await BookModel.find({bookName:"radon" , authorName:"ravi"} )
     res.rend({msg: allBooks1})
 }
 
