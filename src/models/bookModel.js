@@ -10,7 +10,7 @@ const bookSchema = new mongoose.Schema( {
         europePrice: String,
     },
     year: {
-        type:Number,
+        type: Number,
         default: 2021
     },
     tags: [String],

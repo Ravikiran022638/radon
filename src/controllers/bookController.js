@@ -2,37 +2,36 @@ const { count } = require("console")
 const BookModel= require("../models/bookModel")
 
 const createBook= async function (req, res) {
-    let data1= req.body
-    let savedData1= await BookModel.create(data1)
-    res.send({msg: savedData1})
-}
-
-const bookList= async function (req , res) {
-    let allBooks1 = await BookModel.find({bookName:"radon" , authorName:"ravi"} )
-    res.rend({msg: allBooks1})
-}
-
-const getBooksInYear= async function (req, res) {
-    let data1=  req.body
-    let allBooks1 = await BookModel.find({year:Number})
-    let savedData= await BookModel.create(data1)
-    res.rend({msg: allBooks1})
+    let data= req.body
+    let savedData= await BookModel.create(data)
     res.send({msg: savedData})
 }
 
+const bookList= async function (req , res) {
+    let allBooks = await BookModel.find().select({bookName:1, authorName:1,_id :0} )
+    res.send({msg: allBooks})
+}
+
+const getBooksInYear= async function (req, res) {
+    let bookYear= req.body.year
+    let allBooks = await BookModel.find({year:bookYear})
+     res.send({msg: allBooks})
+} 
+
 const getParticularBooks= async function (req, res) {
-    let allBooks1 = await BookModel.find({$or: [{bookName:/^a-zA-Z/} ,{year:/^0-2022/}] })
-    res.rend({msg: allBooks1})
+    let anyBook=req.body
+    let allBooks = await BookModel.find({anyBook })
+    res.send({msg: allBooks})
 }
  
 const getXINRBooks= async function (req, res) {
-    let allBooks1 = await BookModel.find({price: [{indianPrice:"100INR", indianPrice:"200INR", indianPrice: "500INR"}] })
-    res.rend({msg: allBooks1})
+    let allBooks = await BookModel.find($or:[{"price.indianPrice":{$eq: "100INR"}),{"price.indianPrice":{$eq: "100INR"}),{"price.indianPrice":{$eq: "100INR"}),
+    res.send({msg: allBooks})
 }
 
 const getRandomBooks= async function (req, res) {
-    let allBooks1 = await BookModel.find({bookName: "string"}, {totalPages: {$gt : 500} })
-    res.rend({msg: allBooks1})
+    let allBooks = await BookModel.find({bookName: "string"}, {totalPages: {$gt : 500} })
+    res.send({msg: allBooks})
 }
 
 // let allBooks= await BookModel.find( ).count() // COUNT
