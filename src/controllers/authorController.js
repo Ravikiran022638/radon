@@ -17,18 +17,18 @@ const createBooks= async function (req, res) {
 
 const bookList= async function (req, res) {
 let data = await AuthorModel.find({author_Id:1}).select({author_name:"Chetan Bhagat"})
-let bookData= await BookModel.find({"bookName":1},{$eq:{_id:1}} )
+let bookData= await BookModel.find({author_Id:data.author_Id } )
 res.send({msg: bookData})
 
 }
 const findAuthor= async function (req, res) {
-    let data = await BookModel.findOneAndUpdate({author_Id:1},{$set: {price:100}})
+    let data = await BookModel.findOneAndUpdate({bookName:"Two States"},{$set: {price:100}})
     let authorData= await AuthorModel.find({author_Id:data.author_Id }).select({"author_name":"Chetan Bhagat"})
     res.send({msg: authorData})
 }                                                                                    
 const findBookPrice= async function (req, res) {
     let data = await (await BookModel.find({price:{$gte: 50, $lte: 100}}).select({author_Id:1})).map(x=>x.authorModel)
-
+    res.send({msg: data})
 }
 
 
