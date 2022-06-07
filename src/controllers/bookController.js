@@ -14,7 +14,7 @@ const bookList= async function (req , res) {
 
 const getBooksInYear= async function (req, res) {
     let bookYear= req.body.year
-    let allBooks = await BookModel.find({year:bookYear})
+    let allBooks = await BookModel.find({year:bookYear}).select({bookName:1, _id:0})
      res.send({msg: allBooks})
 } 
 
@@ -25,14 +25,15 @@ const getParticularBooks= async function (req, res) {
 }
  
 const getXINRBooks= async function (req, res) {
-    let allBooks = await BookModel.find({$or:[{"price.indianPrice":{$eq: "100INR"}},{"price.indianPrice":{$eq: "200INR"}},{"price.indianPrice":{$eq: "300INR"}}]})
+    let allBooks = await BookModel.find({$or:[{"price.indianPrice":{$eq: "100INR"}},{"price.indianPrice":{$eq: "200INR"}},{"price.indianPrice":{$eq: "300INR"}}]}).select({bookName:1,_id:0})
     res.send({msg: allBooks})
 }
 
 const getRandomBooks= async function (req, res) {
-    let allBooks = await BookModel.find({bookName: "string"}, {totalPages: {$gt : 500} })
+    let allBooks = await BookModel.find({$or:[{stockAvailable: true}, {totalPages: {$gt : 500}}] })
     res.send({msg: allBooks})
 }
+
 
 // let allBooks= await BookModel.find( ).count() // COUNT
 
