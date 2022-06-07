@@ -25,7 +25,7 @@ const getParticularBooks= async function (req, res) {
 }
  
 const getXINRBooks= async function (req, res) {
-    let allBooks = await BookModel.find($or:[{"price.indianPrice":{$eq: "100INR"}),{"price.indianPrice":{$eq: "100INR"}),{"price.indianPrice":{$eq: "100INR"}),
+    let allBooks = await BookModel.find({$or:[{"price.indianPrice":{$eq: "100INR"}},{"price.indianPrice":{$eq: "200INR"}},{"price.indianPrice":{$eq: "300INR"}}]})
     res.send({msg: allBooks})
 }
 
