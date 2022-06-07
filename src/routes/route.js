@@ -12,11 +12,11 @@ router.post("/createAuthors", AuthorController.createAuthors  )
 
 router.get("/createBooks", AuthorController.createBooks)
 
-router.post("/bookList", AuthorController. bookList )
+router.get("/bookList", AuthorController. bookList )
 
 router.get("/findAuthor", AuthorController.findAuthor)
 
-router.post("/findBookPrice", AuthorController.findBookPrice)
+router.get("/findBookPrice", AuthorController.findBookPrice)
 
 
 //MOMENT JS
