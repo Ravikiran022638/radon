@@ -11,7 +11,7 @@ const createAuthors= async function (req, res) {
 
 const createBooks= async function (req, res) {
     let data= req.body
-    let savedData= await bookModel.create(data)
+    let savedData= await BookModel.create(data)
     res.send({msg: savedData})
 }
 
