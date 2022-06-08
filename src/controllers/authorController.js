@@ -11,7 +11,7 @@ const createAuthors= async function (req, res) {
 const createBooks= async function (req, res) {
     let data= req.body
     let savedData= await BookModel.create(data)
-    res.send({msg: savedData})
+    res.send({msg: savedata})
 }
 
 const bookList= async function (req, res) {
@@ -27,17 +27,19 @@ const findAuthor= async function (req, res) {
     res.send({msg: authorData, prices})
 }                                                                                    
 const findBookPrice= async function (req, res) {
-    let data = await BookModel.find({price:{$gte: 50, $lte: 100}}).select({author_id: 1,"author_name": "Chetan Bhagat",_id:0},{}) 
-    //let data2=  authorModel.map(x=>x.BookModel)
+    let data = await BookModel.find({price:{$gte: 50, $lte: 100}}).select({author_id: 1,"author_name": "Chetan Bhagat",_id:0}) 
+    let data2=  authorModel.map(x=>x.BookModel)
     
-    res.send({msg: data})
+    res.send({msg: data,data2})
 }
 
 
+const findList= async function (req, res) {
+    let data = await authorModel.find({"author_name":1},({$gt:["age":50]}))
 
 
 
-
+}
 
 
 
