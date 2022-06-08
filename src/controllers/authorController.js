@@ -1,6 +1,5 @@
 const { count } = require("console")
 const authorModel = require("../models/authorModel")
-const AuthorModel = require("../models/authorModel")
 const BookModel= require("../models/bookModel")
 
 const createAuthors= async function (req, res) {
@@ -16,20 +15,20 @@ const createBooks= async function (req, res) {
 }
 
 const bookList= async function (req, res) {
-let data = await AuthorModel.find({author_Id:1}).select({author_name:"Chetan Bhagat"})
+let data = await authorModel.find({author_Id:1}).select({author_name:"Chetan Bhagat"})
 let bookData= await BookModel.find({author_Id:data.author_Id } )
 res.send({msg: bookData})
 
 }
 const findAuthor= async function (req, res) {
     let data = await BookModel.findOneAndUpdate({bookName:"Two states"},{$set: {price:100}})
-    let authorData= await AuthorModel.find({author_Id:data }).select({"author_name":"Chetan Bhagat"})
+    let authorData= await authorModel.find({author_Id:data }).select({"author_name":"Chetan Bhagat"})
     let prices=data.price
     res.send({msg: authorData, prices})
 }                                                                                    
 const findBookPrice= async function (req, res) {
     let data = await BookModel.find({price:{$gte: 50, $lte: 100}}).select({"author_name":1}) 
-    let data2= await AuthorModel.map(x=>x.data)
+    let data2=  authorModel.map(x=>x.BookModel)
     
     res.send({msg: data, data2})
 }
