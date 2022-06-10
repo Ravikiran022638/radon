@@ -1,8 +1,6 @@
 const express = require('express');
 const router = express.Router();
-// const UserModel= require("../models/userModel.js")
 const UserController= require("../controllers/userController")
-const BookController= require("../controllers/bookController")
 const commonMW = require ("../middlewares/commonMiddlewares")
 
 router.get("/test-me", function (req, res) {
@@ -12,7 +10,7 @@ router.get("/test-me", function (req, res) {
 
 
 
-router.post("/createBook", BookController.createBook  )
+router.get("/basicCode", commonMW.mid3,commonMW.mid4,commonMW.mid5, UserController.basicCode )
 
 
 
