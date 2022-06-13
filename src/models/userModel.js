@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 const userSchema = new mongoose.Schema( {
-    user_id:String,
+    
     name:String,
        
     balance:{
@@ -12,7 +12,7 @@ const userSchema = new mongoose.Schema( {
     age: Number,
     gender: {
         type: String,
-        enum: ["male", "female", "LGBTQ"] 
+        enum: ["male", "female", "other"] 
     },
     isFreeAppuser:{
         type: Boolean,
@@ -21,7 +21,7 @@ const userSchema = new mongoose.Schema( {
    
 }, { timestamps: true });
 
-module.exports = mongoose.model('User', userSchema) //users
+module.exports = mongoose.model('User', userSchema) 
 
 
 

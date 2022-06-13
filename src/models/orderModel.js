@@ -1,24 +1,29 @@
 const mongoose = require('mongoose');
-
+const ObjectId =mongoose.Schema.Types.ObjectId
 
 const orderSchema = new mongoose.Schema( {
-    order_id: String, 
+    
     user_id:{
-        type:Object_id,
+        type:ObjectId,
         ref: "User"
 
     },
     product_id:{
-        type:Object_id,
+        type:ObjectId,
         ref: "Product"
     },
-    amount: Number,
+    amount: {
+            type:Number
+
+    },
     isFreeAppUser:Boolean,
-    date: String,
-    
+    date:{ 
+        type:Date,
+        default: Date.now
+    }
    
     
-    summary :  mongoose.Schema.Types.Mixed,
+    
   
 
 }, { timestamps: true });
