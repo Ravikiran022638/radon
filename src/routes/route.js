@@ -12,11 +12,11 @@ router.post("/users", userController.createUser  )
 router.post("/login", userController.loginUser)
 
 
-router.get("/users/:userId",commonMW.authMiddleware ,userController.getUserData)
+router.get("/users/:userId",commonMW.authenticateMId1 ,userController.getUserData)
 
-router.put("/users/:userId", commonMW.authMiddleware,userController.updateUser)
+router.put("/users/:userId", commonMW.authenticateMId1,userController.updateUser)
 
-router.delete("/users/:userId",commonMW.authMiddleware ,userController.deleteUser)
+router.delete("/users/:userId",commonMW.authenticateMId1 ,userController.deleteUser)
 
 
 
