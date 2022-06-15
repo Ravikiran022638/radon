@@ -11,7 +11,7 @@ router.post("/users", userController.createUser  )
 
 router.post("/login", userController.loginUser)
 
-//The userId is sent by front end
+
 router.get("/users/:userId",commonMW.authMiddleware ,userController.getUserData)
 
 router.put("/users/:userId", commonMW.authMiddleware,userController.updateUser)
