@@ -17,7 +17,7 @@ const userSchema = new mongoose.Schema( {
     age: Number,
     isDelete:{
         type:Boolean,
-        default:true
+        default:false
     }
 }, { timestamps: true });
 
