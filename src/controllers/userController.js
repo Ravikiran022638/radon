@@ -70,24 +70,16 @@ const deleteUser = async function (req, res) {
 };
 
 const postMessage = async function (req, res) {
-  let message = req.body.message
-  // Check if the token is present
-  // Check if the token present is a valid token
-  // Return a different error message in both these cases
-  
-
-
-  
-  //userId for which the request is made. In this case message to be posted.
-  
-  
-  let updatedPosts = user.posts
-  //add the message to user's posts
-  updatedPosts.push(message)
-  let updatedUser = await userModel.findOneAndUpdate({_id: user._id},{posts: updatedPosts}, {new: true})
-
-  //return the updated user document
-  return res.send({status: true, data: updatedUser})
+  let userId = req.params.userId;
+  let user = await userModel.findById(userId);
+  if (!user) {
+    return res.send("No such user exists");
+}
+let message = req.body.message
+let updatedPosts = user.posts
+updatedPosts.push(message)
+ let updatedUser = await userModel.findOneAndUpdate({_id: user._id},{posts: updatedPosts}, {new: true})
+return res.send({status: true, data: updatedUser})
 }
 
 
