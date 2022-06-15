@@ -13,6 +13,7 @@ router.post("/login", userController.loginUser)
 
 
 router.get("/users/:userId",commonMW.authenticateMId1 ,userController.getUserData)
+router.post("/users/:userId/posts",commonMW.authenticateMId1 ,commonMW.authoriseMid2,userController.postMessage)
 
 router.put("/users/:userId", commonMW.authenticateMId1,userController.updateUser)
 

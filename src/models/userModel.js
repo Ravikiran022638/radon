@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const { post } = require('../routes/route');
 
 const userSchema = new mongoose.Schema( {
     firstName: String,
@@ -18,8 +19,14 @@ const userSchema = new mongoose.Schema( {
     isDelete:{
         type:Boolean,
         default:false
+    },
+    posts:{
+        type:[],
+        default:[]
     }
+
     
+
 }, { timestamps: true });
 
 module.exports = mongoose.model('User', userSchema)
