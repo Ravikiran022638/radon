@@ -7,7 +7,7 @@ const userModel = require("../models/userModel");
 
 
 const authorise =  async function (req, res, next){
- let token = req.headers["x-auth-token"] || req.headers["x-auth-token"]
+  let token = req.headers["x-auth-token"] || req.headers["x-auth-token"]
 console.log(token)
 if(!token)  res.send({status: false, msg: "token must be present"})
 try { 
@@ -30,10 +30,6 @@ req.user = user;
 }
 next()
 }
-  
+ 
 module.exports.authorise=authorise
-
-
-
-
 

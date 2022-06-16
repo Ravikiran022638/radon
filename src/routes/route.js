@@ -15,7 +15,7 @@ router.post("/users", userController.createUser  )
 router.post("/login", userController.loginUser)
 
 
-router.get("/users/:userId",,userController.getUserData)
+router.get("/users/:userId",userController.getUserData)
 
 
 router.put("/users/:userId",commonMW.authorise,userController.updateUser)
