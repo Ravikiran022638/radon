@@ -7,26 +7,26 @@ const userModel = require("../models/userModel");
 
 
 const authorise =  async function (req, res, next){
+ 
+  try { 
   let token = req.headers["x-auth-token"] || req.headers["x-auth-token"]
 console.log(token)
-if(!token)  res.send({status: false, msg: "token must be present"})
-try { 
+if(!token)  res.status(403).send({status: false, msg: "token must be present"})
+
 let decodedToken = jwt.verify(token, "functionup-radon");
 let userId = req.params.userId;
 let userLoggedIn = decodedToken.userId;
 
 if(userId!=userLoggedIn)
-return res.send(
-  "User logged in is not allowed to modified another users data"
-);
+return res.status(403).send("User logged in is not allowed to modified another users data");
 
 let user = await userModel.findById(userId);
 if (!user) {
-  return res.send("No such user exists")
+  return res.status(403).send("No such user exists")
 }
 req.user = user;
 }catch (error) {
-  return res.send("the token is Invalid")
+  return res.status(403).send("the token is Invalid")
 }
 next()
 }
