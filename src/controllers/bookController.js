@@ -1,6 +1,8 @@
 const authorModel = require("../models/authorModel")
 const AuthorModel = require("../models/authorModel")
 const bookModel= require("../models/bookModel")
+const publisherModel = require("../controllers/publisherController")
+const { send } = require("express/lib/response")
 
 
     const createBook = async function (req, res) {
@@ -9,36 +11,31 @@ const bookModel= require("../models/bookModel")
         console.log(authorId);
         console.log(publisherId);
 
-        if(!authorId){
-            return res.send({error:"author ID is required"})
-        }
-    
-        let checkAuthor = await authorModel.findById(authorId)
-        if(!checkAuthor){
-            return res.send({error:"author ID is not valid"})  
-        }
-    
-        if(!publisherId){
-            return res.send({error:"publisher ID is required"})
-        }
-    
-    
-        let checkPublisher = await publisherModel.findById(publisherId)
-        if(!checkPublisher){
-            return res.send({error:"publisher ID is not valid"})
-        }
-    
         let savedata = await bookModel.create(data)
-              res.send({data:savedata})
+        res.send({data:savedata})
+
+
+        if(!authorId){
+        res.send({error:"author ID is required"})
+        }
+    
+    
+    if(!publisherId){
+             res.send({error:"publisher ID is required"})
+        }
+   
     }
 
-
 const getBooksData= async function (req, res) {
-    let books = await bookModel.find().populate("author_id" , "publisher_id ")
+    let books = await bookModel.find().populate("authorId" , "publisherId ")
     res.send({data: books})
 }
 
-
+const changeBook= async function (req, res) {
+let bookChange= await bookModel.findOneAndUpdate().populate("publisherId ", {$set:{ isHardCover: true}}, {new:true})
+res,send({data:bookChange})
+}
 module.exports.createBook= createBook
 module.exports.getBooksData= getBooksData
+module.exports.changeBook= changeBook
 

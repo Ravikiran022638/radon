@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 
 const publisherSchema = new mongoose.Schema( {
 
-publisher_id:String,
+
 name:String,
 headQuarter:String
 
