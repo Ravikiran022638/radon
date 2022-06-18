@@ -3,12 +3,12 @@ const ObjectId =mongoose.Schema.Types.ObjectId
 
 const orderSchema = new mongoose.Schema( {
     
-    user_id:{
+    userId:{
         type:ObjectId,
         ref: "User"
 
     },
-    product_id:{
+    productId:{
         type:ObjectId,
         ref: "Product"
     },
@@ -18,10 +18,10 @@ const orderSchema = new mongoose.Schema( {
     },
     isFreeAppUser:Boolean,
     date:{ 
-        type:Date,
+        type:String,
         default: Date.now
     }
-   
+    
     
     
   
