@@ -25,7 +25,7 @@ let getDistricts = async function (req, res) {
         let stateId = req.params.stateId
         let options = {
             method: "get",
-            url: `https://cdn-api.co-vin.in/api/v2/admin/location/districts?sateId=${stateId}`
+            url: `https://cdn-api.co-vin.in/api/v2/admin/location/districts/16?sateId=${stateId}`
         }
         let result = await axios(options);
         console.log(result)
@@ -40,12 +40,12 @@ let getDistricts = async function (req, res) {
 
 let getByPin = async function (req, res) {
     try {
-        let pin = req.query.pincode
+        let pincode = req.query.pincode
         let date = req.query.date
-        console.log(`query params are: ${pin} ${date}`)
+        console.log(`query params are: ${pincode} ${date}`)
         var options = {
             method: "get",
-            url: `https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/findByPin?pincode=${pin}&date=${date}`
+            url: `https://cdn-api.co-vin.in/api/v2/appointment/sessions/public/findByPin?pincode=${pincode}&date=${date}`
         }
         let result = await axios(options)
         console.log(result.data)
