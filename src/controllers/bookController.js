@@ -32,10 +32,10 @@ const getBooksData= async function (req, res) {
 }
 
 const changeBook= async function (req, res) {
-let bookChange= await bookModel.findOneAndUpdate().populate("publisherId ", {$set:{ isHardCover: true}}, {new:true})
+let bookChange= await bookModel.findOneAndUpdate({name:"Penguin"}).populate(({"newPublisher": "name"}) || ({$set:{ isHardCover: true}}, {new:true}))
 res,send({data:bookChange})
 }
 module.exports.createBook= createBook
 module.exports.getBooksData= getBooksData
 module.exports.changeBook= changeBook
-
+ 
